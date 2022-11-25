@@ -12,3 +12,7 @@ mybatis:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 设置Mybatis-plus的全局配置
+#  global-config:
+#    db-config:
+#      table-prefix: t_
