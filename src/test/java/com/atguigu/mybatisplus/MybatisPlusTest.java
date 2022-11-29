@@ -21,6 +21,7 @@ public class MybatisPlusTest {
         //List<User> list = userMapper.selectList(null);
         //list.forEach(System.out::println);
 
+
         Map<String,Object> map = userMapper.selectMapById(1L);
         System.out.println(map);
 
