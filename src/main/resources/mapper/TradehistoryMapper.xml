@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mybatisplus.mapper.TradehistoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.atguigu.mybatisplus.entity.Tradehistory">
+            <id property="id" column="ID" jdbcType="BIGINT"/>
+            <result property="code" column="Code" jdbcType="VARCHAR"/>
+            <result property="name" column="Name" jdbcType="VARCHAR"/>
+            <result property="guessprice" column="GuessPrice" jdbcType="DECIMAL"/>
+            <result property="content" column="Content" jdbcType="VARCHAR"/>
+            <result property="dateguess" column="DateGuess" jdbcType="DATE"/>
+            <result property="dateadd" column="DateAdd" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID,Code,Name,
+        GuessPrice,Content,DateGuess,
+        DateAdd,image
+    </sql>
+</mapper>
