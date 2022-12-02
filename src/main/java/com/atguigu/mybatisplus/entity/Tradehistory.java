@@ -14,6 +14,8 @@ import lombok.Data;
 @TableName(value ="T_GP_TradeHistory")
 @Data
 public class Tradehistory implements Serializable {
+
+    @TableId(value="id",type= IdType.AUTO)
     private Long id;
 
     private String code;
