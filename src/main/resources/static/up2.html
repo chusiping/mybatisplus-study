@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"></html>
+<head>
+  <meta charset="UTF-8">
+  <title>up！</title>
+</head>
+<body>
+<h1>up.html</h1>
+
+<form action="/upfile/up2" method="post" enctype="multipart/form-data">
+  姓名：<input type="text" name="name"/><br/>
+  <!-- 切记，这里的name="multipartFile"必须和控制层的参数一致性MultipartFile multipartFile -->
+  照片：<input type="file" name="multipartFile"/><br/>
+  <input type="submit" value="上传"/><br/>
+</form>
+
+</body>
+</html>
