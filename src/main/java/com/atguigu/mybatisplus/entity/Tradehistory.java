@@ -22,7 +22,7 @@ public class Tradehistory implements Serializable {
 
     private String name;
 
-    private Integer guessprice;
+    private float guessprice;
 
     private String content;
 

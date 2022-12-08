@@ -1,6 +1,10 @@
 package com.atguigu.mybatisplus.controller;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -18,7 +22,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/upfile")
+@RequestMapping("/trade")
 public class api_TradeHistory {
     @Autowired
     private TradehistoryMapper tradehistoryMapper;
@@ -36,19 +40,63 @@ public class api_TradeHistory {
         return new JsonResult<>(th);
     }
 
-    //============上传文件二进制入表================
-    @RequestMapping(value = "/up4", method = RequestMethod.POST)
+    //股票历史预测 - 插入
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult<Tradehistory> up4(@RequestParam(name = "image") MultipartFile file,
-                                        String code,String name,String content)
+    public JsonResult<Tradehistory> add(@RequestParam(name = "image") MultipartFile file,
+                                        String code, String name, String content,
+                                        float guessPrice , String guessDate  )
             throws IOException {
         byte[] Image_ = file.getBytes();
         Tradehistory th = new Tradehistory();
         th.setCode(code);
         th.setName(name);
-        th.setContent("ceshi ");
+        th.setGuessprice(guessPrice);
+        DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            th.setDateguess(format1.parse(guessDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        th.setContent(content);
         th.setImage(Image_);
         int rt = tradehistoryMapper.insert(th);
+        return new JsonResult<>(th);
+    }
+    //股票历史预测 - 插入
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult<Tradehistory> edit(@RequestParam(name = "image") MultipartFile file,
+                                        Long ID,String code, String name, String content,
+                                         float guessPrice , String guessDate  )
+            throws IOException {
+        byte[] Image_ = file.getBytes();
+        Tradehistory th = new Tradehistory();
+        th.setId(ID);
+        th.setCode(code);
+        th.setName(name);
+        th.setGuessprice(guessPrice);
+        DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            th.setDateguess(format1.parse(guessDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        th.setContent(content);
+        th.setImage(Image_);
+        int rt = tradehistoryMapper.updateById(th);
+        return new JsonResult<>(th);
+    }
+    //股票历史预测 - 插入
+    @RequestMapping(value = "/del")
+    @ResponseBody
+    public JsonResult<Tradehistory> del(Long ID)
+            throws IOException {
+        Tradehistory th = new Tradehistory();
+        th.setId(ID);
+        int rt = tradehistoryMapper.deleteById(ID);
         return new JsonResult<>(th);
     }
 }
