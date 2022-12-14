@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @TableName T_GP_TradeHistory
@@ -26,6 +27,7 @@ public class Tradehistory implements Serializable {
 
     private String content;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateguess;
 
     private Date dateadd;
