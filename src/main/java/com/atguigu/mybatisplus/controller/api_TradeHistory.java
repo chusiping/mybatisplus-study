@@ -76,4 +76,15 @@ public class api_TradeHistory {
         int rt = tradehistoryMapper.deleteById(ID);
         return new JsonResult<>(th);
     }
+
+    //股票历史预测 - 删除
+    @RequestMapping(value = "/delByCode")
+    @ResponseBody
+    public JsonResult<Tradehistory> del(String code)
+            throws IOException {
+        Tradehistory th = new Tradehistory();
+        th.setCode(code);
+        int rt = tradehistoryMapper.deleteByCode(code);
+        return new JsonResult<>(th);
+    }
 }

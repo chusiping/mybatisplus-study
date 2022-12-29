@@ -19,4 +19,9 @@
         GuessPrice,Content,DateGuess,
         DateAdd,image
     </sql>
+    <delete id="deleteByCode">
+        delete
+        from T_GP_TradeHistory
+        where Code = #{code,jdbcType=VARCHAR}
+    </delete>
 </mapper>
