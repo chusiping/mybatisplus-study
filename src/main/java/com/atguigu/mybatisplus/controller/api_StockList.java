@@ -3,20 +3,19 @@ package com.atguigu.mybatisplus.controller;
 import com.atguigu.mybatisplus.entity.JsonResult;
 import com.atguigu.mybatisplus.entity.Stocklist;
 import com.atguigu.mybatisplus.mapper.StocklistMapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.multipart.MultipartFile;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
+
+@Api
 @RestController
 @RequestMapping("/stock")
 public class api_StockList {
@@ -25,6 +24,7 @@ public class api_StockList {
     private StocklistMapper stocklistMapper;
     @RequestMapping("/test")
     @ResponseBody
+    @ApiOperation(value="接口是否可以调用测试")
     public JsonResult<Stocklist> test() {
         Stocklist sl = new Stocklist();
         sl.setCode("002467");
@@ -43,7 +43,8 @@ public class api_StockList {
     }
 
     @RequestMapping("/add")
-    public JsonResult<Stocklist> add(@RequestBody Stocklist sl_) {
+    @ApiOperation(value="添加Stocklist对象到记录")
+    public JsonResult<Stocklist> add(@ApiParam(name="Stocklist",value="添加对象Stocklist",required=true) @RequestBody Stocklist sl_) {
         try{
             int rt = stocklistMapper.insert(sl_);
             if(rt == 0 )

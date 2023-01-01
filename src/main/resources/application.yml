@@ -1,6 +1,11 @@
 server:
   port: 8080
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  profiles:
+    active: pro
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://redis.qy:3306/nodejs?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
